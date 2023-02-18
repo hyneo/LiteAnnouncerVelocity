@@ -16,7 +16,7 @@ class Settings {
                 val message = Message(it.lines)
                 message.showMode = Message.ShowMode.valueOf(it.snowmode)
                 if( message.showMode != Message.ShowMode.ALLSERVERS){
-                    message.servers = it.lines
+                    message.servers = it.servers
                 }
             }
         }

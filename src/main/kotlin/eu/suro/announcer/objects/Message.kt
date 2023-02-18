@@ -19,7 +19,7 @@ class Message(lines: List<String>) {
         this.lines = ArrayList<Component>()
         servers = ArrayList<String>()
         number = 0
-        if (!lines.isEmpty()) {
+        if (lines.isNotEmpty()) {
             number = Settings.messages.size + 1
             lines.forEach(Consumer<String> { line: String ->
                 this.lines.add(mm.deserialize(line))
