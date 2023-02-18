@@ -1,7 +1,7 @@
 package eu.suro.announcer
 
 
-import eu.suro.announcer.`object`.Message
+import eu.suro.announcer.objects.Message
 import java.time.Duration
 
 class AnnouncerTask : Runnable {

@@ -2,7 +2,6 @@ plugins {
     java
     kotlin("jvm") version "1.8.0-Beta"
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("com.google.protobuf") version "0.8.18"
     kotlin("kapt") version "1.7.21"
 }
 
@@ -38,7 +37,6 @@ java {
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "17"
-        kotlinOptions.javaParameters = true
     }
 
     compileTestKotlin {
@@ -49,21 +47,16 @@ tasks {
         options.encoding =  "UTF-8"
     }
 
-    processResources {
-        filesMatching("*.json") {
-            expand(project.properties)
-        }
-    }
-
     shadowJar {
         archiveClassifier.set("")
-        exclude("**/*.kotlin_metadata")
     }
 }
 
 dependencies {
+    //edit for you edit for my server you stdlib
+    compileOnly(kotlin("stdlib"))
     compileOnly(libs.velocity)
-    compileOnly("org.yaml:snakeyaml:1.33")
-    implementation(libs.configlib.yaml)
-    implementation("net.kyori:adventure-text-minimessage:4.12.0")
+    implementation("org.yaml:snakeyaml:1.33")
+    compileOnly(libs.configlib.yaml)
+    kapt(libs.velocity)
 }

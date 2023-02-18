@@ -1,6 +1,6 @@
 package eu.suro.announcer
 
-import eu.suro.announcer.`object`.Message
+import eu.suro.announcer.objects.Message
 
 class Settings {
 

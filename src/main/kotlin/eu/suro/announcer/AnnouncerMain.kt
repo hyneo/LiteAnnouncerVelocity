@@ -2,6 +2,8 @@ package eu.suro.announcer
 
 import com.google.inject.Inject
 import com.velocitypowered.api.command.CommandMeta
+import com.velocitypowered.api.event.Subscribe
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.plugin.annotation.DataDirectory
 import com.velocitypowered.api.proxy.ProxyServer
@@ -31,6 +33,10 @@ class AnnouncerMain @Inject constructor(val proxyServer: ProxyServer, @DataDirec
     init {
         instance = this
         reloadConfig()
+    }
+
+    @Subscribe
+    fun onInit(event: ProxyInitializeEvent){
         Settings.globalSetup()
         runTask.start()
         val commandMeta: CommandMeta =

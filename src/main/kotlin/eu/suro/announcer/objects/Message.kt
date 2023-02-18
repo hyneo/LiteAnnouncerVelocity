@@ -1,4 +1,4 @@
-package eu.suro.announcer.`object`
+package eu.suro.announcer.objects
 
 import com.velocitypowered.api.proxy.Player
 import eu.suro.announcer.Settings
