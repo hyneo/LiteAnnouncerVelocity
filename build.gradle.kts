@@ -19,16 +19,6 @@ val gitlabToken = if (System.getenv("CI_TOKEN") != null) {
 repositories{
     mavenCentral()
     maven { url = uri("https://repo.panda-lang.org/releases") }
-    maven {
-        url = uri( "https://gitlab.hyneo.ru/api/v4/groups/39/-/packages/maven")
-        credentials(HttpHeaderCredentials::class) {
-            name = "Private-Token"
-            value = "$gitlabToken"
-        }
-        authentication {
-            create("header", HttpHeaderAuthentication::class)
-        }
-    }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") } // This lets gradle find the BungeeCord files online
     maven {
         name = "papermc"
