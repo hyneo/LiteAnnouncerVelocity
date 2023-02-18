@@ -1,15 +1,19 @@
 package eu.suro.announcer
 
 
+import com.velocitypowered.api.scheduler.ScheduledTask
 import eu.suro.announcer.objects.Message
 import java.time.Duration
 
 class AnnouncerTask : Runnable {
     private var currentMessageNumber = 0
     private var runned = false
+    companion object{
+        private lateinit var task: ScheduledTask
+    }
 
     fun start() {
-        AnnouncerMain.instance.proxyServer.scheduler
+        task = AnnouncerMain.instance.proxyServer.scheduler
             .buildTask(AnnouncerMain.instance, this)
             .delay(Duration.ofSeconds(5))
             .repeat(Duration.ofSeconds(AnnouncerMain.instance.announcerConfig.settings.interval.toLong()))
@@ -54,7 +58,7 @@ class AnnouncerTask : Runnable {
     fun restart() {
         if (runned) {
             currentMessageNumber = 0
-            AnnouncerMain.instance.proxyServer.scheduler.tasksByPlugin(AnnouncerMain.instance).forEach { it.cancel() }
+            task.cancel()
             AnnouncerMain.instance.proxyServer.scheduler
                 .buildTask(AnnouncerMain.instance, this)
                 .delay(Duration.ofSeconds(5))
@@ -64,7 +68,7 @@ class AnnouncerTask : Runnable {
     }
 
     fun cancel() {
-        AnnouncerMain.instance.proxyServer.scheduler.tasksByPlugin(AnnouncerMain.instance).forEach { it.cancel() }
+        task.cancel()
         currentMessageNumber = 0
         runned = false
     }

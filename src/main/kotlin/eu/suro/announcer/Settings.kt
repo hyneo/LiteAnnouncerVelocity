@@ -11,6 +11,7 @@ class Settings {
 
         @JvmStatic
         fun globalSetup(){
+            messages = ArrayList()
             AnnouncerMain.instance.announcerConfig.messages.forEach{
                 val message = Message(it.lines)
                 message.showMode = Message.ShowMode.valueOf(it.snowmode)
